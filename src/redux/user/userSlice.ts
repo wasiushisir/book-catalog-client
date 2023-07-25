@@ -95,8 +95,8 @@ export const loginUser = createAsyncThunk(
 );
 export const googleUser = createAsyncThunk("user/google-user", async () => {
   const result = await signInWithPopup(auth, provider);
-  const credential = GoogleAuthProvider.credentialFromResult(result);
-  const token = credential!.accessToken;
+  // const credential = GoogleAuthProvider.credentialFromResult(result);
+  // const token = credential!.accessToken;
   // The signed-in user info.
   const { email } = result.user;
   const response = await fetch(`http://localhost:3000/user/${email}`, {

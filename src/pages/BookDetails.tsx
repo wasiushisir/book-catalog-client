@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import {
   useGetSingleBookQuery,
   usePostBookListMutation,
-  usePostCommentMutation,
   usePostWishMutation,
 } from "../redux/features/books/bookApi";
 // import {IBook} from '../types/globaltypes'
