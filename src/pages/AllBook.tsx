@@ -7,7 +7,9 @@ interface DataItem {
   Title: string;
   Author: string;
   Genre: string;
-  // Add other properties here if needed
+  _id: number;
+  image: string;
+  PublicationDate: string;
 }
 
 export default function AllBook() {
@@ -16,12 +18,12 @@ export default function AllBook() {
   const [publicationYear, setPublicationYear] = useState("");
 
   const { data } = useGetBooksQuery(undefined);
-  const [filter, setFilter] = useState([data?.data]);
+  const [filter, setFilter] = useState<DataItem[]>([data?.data]);
 
   useEffect(() => {
     if (inputValue) {
-      const p = data?.data.filter(
-        (fdata) =>
+      const p: DataItem[] = data?.data.filter(
+        (fdata: DataItem) =>
           fdata.Title.toLowerCase().includes(inputValue.toLowerCase()) ||
           fdata.Author.toLowerCase().includes(inputValue.toLowerCase()) ||
           fdata.Genre.toLowerCase().includes(inputValue.toLowerCase())
@@ -92,7 +94,7 @@ export default function AllBook() {
           <option disabled selected>
             Select Genre
           </option>
-          {data?.data.map((fdata) => (
+          {data?.data.map((fdata: DataItem) => (
             <>
               <option>{fdata.Genre}</option>
             </>
@@ -107,7 +109,7 @@ export default function AllBook() {
           <option disabled selected>
             select publication year
           </option>
-          {data?.data.map((fdata) => (
+          {data?.data.map((fdata: DataItem) => (
             <>
               <option>{fdata.PublicationDate}</option>
             </>
