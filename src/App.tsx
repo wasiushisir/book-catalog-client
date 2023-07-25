@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect } from "react";
+
 import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import { useAppDispatch } from "./redux/hook";
@@ -20,7 +19,7 @@ function App() {
         dispatch(setLoading(false));
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        const uid = user.uid;
+        // const uid = user.uid;
         // ...
       } else {
         dispatch(setLoading(false));

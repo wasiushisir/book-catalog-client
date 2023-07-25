@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { signOut } from "firebase/auth";
@@ -19,6 +19,7 @@ export default function Navbar() {
       })
       .catch((error) => {
         // An error happened.
+        console.log(error);
       });
   };
 

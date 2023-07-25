@@ -1,8 +1,7 @@
-import React from "react";
+// import React from "react";
 import { Link } from "react-router-dom";
 
-export default function BookCard({ book }) {
-  console.log(book);
+export default function BookCard({ book: string }) {
   return (
     <div>
       <div>
