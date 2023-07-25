@@ -1,17 +1,18 @@
-import React from "react";
+// import React from "react";
 import { useGetWishesQuery } from "../redux/features/books/bookApi";
 import { Link } from "react-router-dom";
+import { IBook } from "../types/globaltypes";
 
 export default function Wishlist() {
-  const { data, isLoading } = useGetWishesQuery(undefined, {
+  const { data } = useGetWishesQuery(undefined, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 1000,
   });
-  console.log(data?.data);
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-[100px] mt-[25px]">
-        {data?.data?.map((book) => (
+        {data?.data?.map((book: IBook) => (
           <>
             <Link to={`/bookDetails/${book._id}`}>
               <div className="">

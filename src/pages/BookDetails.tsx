@@ -1,22 +1,19 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   useGetSingleBookQuery,
   usePostBookListMutation,
-  usePostBookMutation,
   usePostCommentMutation,
   usePostWishMutation,
 } from "../redux/features/books/bookApi";
-
+// import {IBook} from '../types/globaltypes'
 export default function BookDetails() {
   const { id } = useParams();
   const [inputValue, setInputValue] = useState<string>("");
-  const { data: book, isLoading } = useGetSingleBookQuery(id);
-  const [postWish, { isLoading2, isError, isSuccess }] = usePostWishMutation();
-  const [postBookList, { isLoading5, isError5, isSuccess5 }] =
-    usePostBookListMutation();
-  const [postComment, { isLoading3, isError3, isSuccess3 }] =
-    usePostCommentMutation();
+  const { data: book } = useGetSingleBookQuery(id);
+  const [postWish] = usePostWishMutation();
+  const [postBookList] = usePostBookListMutation();
+  const [postComment] = usePostCommentMutation();
 
   const handleWishlist = () => {
     postWish(book);
@@ -25,17 +22,17 @@ export default function BookDetails() {
   const handleBooklist = () => {
     postBookList(book);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
 
-    console.log(inputValue);
-    // postComment(inputValue);
+  //   console.log(inputValue);
+  //   // postComment(inputValue);
 
-    setInputValue("");
-  };
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setInputValue(event.target.value);
-  };
+  //   setInputValue("");
+  // };
+  // const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  //   setInputValue(event.target.value);
+  // };
   return (
     <>
       <div className="flex max-w-7xl mx-auto items-center ">
@@ -66,7 +63,7 @@ export default function BookDetails() {
         </div>
       </div>
 
-      <div className="flex justify-center items-center my-10 space-x-2">
+      {/* <div className="flex justify-center items-center my-10 space-x-2">
         <div onSubmit={handleSubmit} className="form-control">
           <div className="input-group">
             <input
@@ -76,29 +73,14 @@ export default function BookDetails() {
               placeholder="Search…"
               className="input input-bordered w-[600px]"
             />
-            {/* <button className="btn btn-square">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </button> */}
+           
 
             <button type="submit" value="Submit" className="btn btn-primary">
               Primary
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

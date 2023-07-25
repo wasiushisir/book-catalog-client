@@ -1,16 +1,16 @@
-import React from "react";
 import { useGetBookListQuery } from "../redux/features/books/bookApi";
 import { Link } from "react-router-dom";
 import "../../src/toggle.css";
+import { IBook } from "../types/globaltypes";
 export default function ListofBooks() {
-  const { data, isLoading } = useGetBookListQuery(undefined, {
+  const { data } = useGetBookListQuery(undefined, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 1000,
   });
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-[100px] mt-[25px]">
-        {data?.data?.map((book) => (
+        {data?.data?.map((book: IBook) => (
           <>
             <div className="rounded-2xl h-[470px] flex flex-col items-center justify-between cursor-pointer overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl  gap-2 pb-3">
               <Link to={`/bookDetails/${book._id}`}>

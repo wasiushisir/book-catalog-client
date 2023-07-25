@@ -1,14 +1,20 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
 import { Link } from "react-router-dom";
+import { IBook } from "../types/globaltypes";
+type Fdata = {
+  Title: string;
+  Author: string;
+  Genre: string;
+};
 
 export default function AllBook() {
   const [inputValue, setInputValue] = useState("");
   const [genre, setGenre] = useState("");
   const [publicationYear, setPublicationYear] = useState("");
 
-  const { data, isLoading } = useGetBooksQuery(undefined);
+  const { data } = useGetBooksQuery(undefined);
   const [filter, setFilter] = useState([data?.data]);
 
   useEffect(() => {

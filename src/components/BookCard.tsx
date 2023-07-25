@@ -1,7 +1,11 @@
 // import React from "react";
 import { Link } from "react-router-dom";
+import { IBook } from "../../src/types/globaltypes.ts";
+interface IProps {
+  book: IBook;
+}
 
-export default function BookCard({ book: string }) {
+export default function BookCard({ book }: IProps) {
   return (
     <div>
       <div>
