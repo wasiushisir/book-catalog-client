@@ -1,5 +1,6 @@
 import BookCard from "../components/BookCard";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
+import { IBook } from "../types/globaltypes";
 
 export default function Home() {
   const { data } = useGetBooksQuery(undefined);
@@ -11,7 +12,7 @@ export default function Home() {
           .slice()
           .reverse()
           .slice(0, 10)
-          .map((book: string) => (
+          .map((book: IBook) => (
             <BookCard book={book} />
           ))}
       </div>

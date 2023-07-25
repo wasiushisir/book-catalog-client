@@ -28,7 +28,7 @@ export default function Navbar() {
       <div className="navbar bg-base-300">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabindex={0} className="btn btn-ghost lg:hidden">
+            <label className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -44,10 +44,7 @@ export default function Navbar() {
                 />
               </svg>
             </label>
-            <ul
-              tabindex="0"
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black"
-            >
+            <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black">
               <li>
                 <a>Item 1</a>
               </li>
@@ -111,16 +108,13 @@ export default function Navbar() {
               </details>
             </li> */}
             <div className="dropdown dropdown-end">
-              <label tabindex="0" className="btn btn-ghost btn-circle avatar">
+              <label className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRByvLJ7lA--BjsinK_YHd-RrFOxroDezMYGjo-Cgk0&s" />
                 </div>
               </label>
 
-              <ul
-                tabindex={0}
-                className="mt-3 z-[1]  shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-32"
-              >
+              <ul className="mt-3 z-[1]  shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-32">
                 {!user?.email && (
                   <Link to="/login">
                     <li>

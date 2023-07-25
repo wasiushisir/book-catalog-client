@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+// import { ChangeEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   useGetSingleBookQuery,
@@ -9,11 +9,11 @@ import {
 // import {IBook} from '../types/globaltypes'
 export default function BookDetails() {
   const { id } = useParams();
-  const [inputValue, setInputValue] = useState<string>("");
+  // const [inputValue, setInputValue] = useState<string>("");
   const { data: book } = useGetSingleBookQuery(id);
   const [postWish] = usePostWishMutation();
   const [postBookList] = usePostBookListMutation();
-  const [postComment] = usePostCommentMutation();
+  // const [postComment] = usePostCommentMutation();
 
   const handleWishlist = () => {
     postWish(book);
