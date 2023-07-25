@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
 import { Link } from "react-router-dom";
-import { IBook } from "../types/globaltypes";
-type Fdata = {
+
+interface DataItem {
   Title: string;
   Author: string;
   Genre: string;
-};
+  // Add other properties here if needed
+}
 
 export default function AllBook() {
   const [inputValue, setInputValue] = useState("");
