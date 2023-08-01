@@ -1,7 +1,4 @@
-
-
 module.exports = {
-  
   root: true,
   env: { browser: true, es2020: true },
   extends: [
@@ -14,7 +11,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
-     project: true,
+    project: true,
     tsconfigRootDir: __dirname,
   },
   plugins: ["react-refresh"],
@@ -24,6 +21,7 @@ module.exports = {
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-misused-promises": "off",
 
     // "react-refresh/only-export-components": [
     //   "warn",
