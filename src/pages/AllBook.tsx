@@ -2,57 +2,91 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
 import { Link } from "react-router-dom";
+import { IBook } from "../types/globaltypes";
 
-interface DataItem {
-  Title: string;
-  Author: string;
-  Genre: string;
-  _id: number;
-  image: string;
-  PublicationDate: string;
-}
+// interface DataItem {
+//   Title: string;
+//   Author: string;
+//   Genre: string;
+//   _id: number;
+//   image: string;
+//   PublicationDate: string;
+// }
 
 export default function AllBook() {
+  // const [inputValue, setInputValue] = useState("");
+  // const [genre, setGenre] = useState("");
+  // const [publicationYear, setPublicationYear] = useState("");
+
+  // const { data } = useGetBooksQuery(undefined);
+  // const [filter, setFilter] = useState<DataItem[]>([data?.data]);
+
+  // useEffect(() => {
+  //   if (inputValue) {
+  //     const p: DataItem[] = data?.data.filter(
+  //       (fdata: DataItem) =>
+  //         fdata.Title.toLowerCase().includes(inputValue.toLowerCase()) ||
+  //         fdata.Author.toLowerCase().includes(inputValue.toLowerCase()) ||
+  //         fdata.Genre.toLowerCase().includes(inputValue.toLowerCase())
+  //     );
+  //     setFilter(p);
+  //   } else {
+  //     setFilter(data?.data);
+  //   }
+  // }, [inputValue]);
+
+  // useEffect(() => {
+  //   let filterDat = [...data?.data];
+  //   if (genre) {
+  //     filterDat = filterDat.filter((d) => d.Genre === genre);
+  //     // setFilter(filterDat);
+  //   }
+
+  //   if (publicationYear) {
+  //     filterDat = filterDat.filter((d) =>
+  //       d.PublicationDate.includes(publicationYear)
+  //     );
+  //   }
+
+  //   setFilter(filterDat);
+
+  //   if (genre === "All") {
+  //     setFilter(data?.data);
+  //   }
+  // }, [genre, publicationYear]);
+
   const [inputValue, setInputValue] = useState("");
   const [genre, setGenre] = useState("");
   const [publicationYear, setPublicationYear] = useState("");
-
   const { data } = useGetBooksQuery(undefined);
-  const [filter, setFilter] = useState<DataItem[]>([data?.data]);
+  const [filter, setFilter] = useState<IBook[]>([]);
 
   useEffect(() => {
+    // if (!data?.data) return;
+
+    let filteredData: IBook[] = [...data.data];
+
     if (inputValue) {
-      const p: DataItem[] = data?.data.filter(
-        (fdata: DataItem) =>
+      filteredData = filteredData.filter(
+        (fdata: IBook) =>
           fdata.Title.toLowerCase().includes(inputValue.toLowerCase()) ||
           fdata.Author.toLowerCase().includes(inputValue.toLowerCase()) ||
           fdata.Genre.toLowerCase().includes(inputValue.toLowerCase())
       );
-      setFilter(p);
-    } else {
-      setFilter(data?.data);
     }
-  }, [inputValue]);
 
-  useEffect(() => {
-    let filterDat = [...data?.data];
-    if (genre) {
-      filterDat = filterDat.filter((d) => d.Genre === genre);
-      // setFilter(filterDat);
+    if (genre && genre !== "All") {
+      filteredData = filteredData.filter((d) => d.Genre === genre);
     }
 
     if (publicationYear) {
-      filterDat = filterDat.filter((d) =>
+      filteredData = filteredData.filter((d) =>
         d.PublicationDate.includes(publicationYear)
       );
     }
 
-    setFilter(filterDat);
-
-    if (genre === "All") {
-      setFilter(data?.data);
-    }
-  }, [genre, publicationYear]);
+    setFilter(filteredData);
+  }, [inputValue, genre, publicationYear, data]);
 
   return (
     <div>
@@ -94,7 +128,7 @@ export default function AllBook() {
           <option disabled selected>
             Select Genre
           </option>
-          {data?.data.map((fdata: DataItem) => (
+          {data?.data.map((fdata: IBook) => (
             <>
               <option>{fdata.Genre}</option>
             </>
@@ -109,7 +143,7 @@ export default function AllBook() {
           <option disabled selected>
             select publication year
           </option>
-          {data?.data.map((fdata: DataItem) => (
+          {data?.data.map((fdata: IBook) => (
             <>
               <option>{fdata.PublicationDate}</option>
             </>

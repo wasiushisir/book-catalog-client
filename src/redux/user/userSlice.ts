@@ -34,9 +34,13 @@ const provider = new GoogleAuthProvider();
 export const createUser = createAsyncThunk(
   "user/create-user",
   async ({ email, password }: Icredintial) => {
-    const data = await createUserWithEmailAndPassword(auth, email!, password);
+    const data = await createUserWithEmailAndPassword(
+      auth,
+      email as string,
+      password
+    );
     const response = await fetch(
-      `http://localhost:3000/user/${data?.user?.email}`,
+      `https://book-catalog2.onrender.com/user/${data?.user?.email as string}`,
       {
         method: "PUT",
         headers: {
@@ -48,7 +52,7 @@ export const createUser = createAsyncThunk(
 
     const p2 = await response.json();
     const accessToken = p2.token;
-    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("accessToken", accessToken as string);
     console.log(p2);
 
     return data.user.email;
@@ -58,9 +62,13 @@ export const createUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "user/login-user",
   async ({ email, password }: Icredintial) => {
-    const data = await signInWithEmailAndPassword(auth, email!, password);
+    const data = await signInWithEmailAndPassword(
+      auth,
+      email as string,
+      password
+    );
     const response = await fetch(
-      `http://localhost:3000/user/${data?.user?.email}`,
+      `https://book-catalog2.onrender.com/user/${data?.user?.email as string}`,
       {
         method: "PUT",
         headers: {
@@ -72,7 +80,7 @@ export const loginUser = createAsyncThunk(
 
     const p2 = await response.json();
     const accessToken = p2.token;
-    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("accessToken", accessToken as string);
     console.log(p2);
     // if (data) {
     //   await fetch(`http://localhost:3000/user/${data?.user?.email}`, {
@@ -99,17 +107,20 @@ export const googleUser = createAsyncThunk("user/google-user", async () => {
   // const token = credential!.accessToken;
   // The signed-in user info.
   const { email } = result.user;
-  const response = await fetch(`http://localhost:3000/user/${email}`, {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({}),
-  });
+  const response = await fetch(
+    `https://book-catalog2.onrender.com/user/${email as string}`,
+    {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({}),
+    }
+  );
 
   const p2 = await response.json();
   const accessToken = p2.token;
-  localStorage.setItem("accessToken", accessToken);
+  localStorage.setItem("accessToken", accessToken as string);
   console.log(p2);
   return email;
   // return data.user.email;

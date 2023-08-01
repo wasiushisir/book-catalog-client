@@ -7,7 +7,7 @@ const bookApi = api.injectEndpoints({
     }),
 
     getSingleBook: builder.query({
-      query: (id) => `/book/${id}`,
+      query: (id) => `/book/${id as string}`,
     }),
 
     postBook: builder.mutation({

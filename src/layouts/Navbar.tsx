@@ -107,14 +107,38 @@ export default function Navbar() {
                 </ul>
               </details>
             </li> */}
+            {/* <div className="dropdown dropdown-end"> */}
+            {/* <label className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRByvLJ7lA--BjsinK_YHd-RrFOxroDezMYGjo-Cgk0&s" />
+                </div>
+              </label> */}
+
+            {/* <ul className="mt-3 z-[1]  shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-32">
+                {!user?.email && (
+                  <Link to="/login">
+                    <li>
+                      <a>Login</a>
+                    </li>
+                  </Link>
+                )}
+                {user?.email && (
+                  <li>
+                    <a onClick={handleLogout}>Logout</a>
+                  </li>
+                )}
+              </ul> */}
+
             <div className="dropdown dropdown-end">
-              <label className="btn btn-ghost btn-circle avatar">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRByvLJ7lA--BjsinK_YHd-RrFOxroDezMYGjo-Cgk0&s" />
                 </div>
               </label>
-
-              <ul className="mt-3 z-[1]  shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-32">
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-24"
+              >
                 {!user?.email && (
                   <Link to="/login">
                     <li>
@@ -129,6 +153,8 @@ export default function Navbar() {
                 )}
               </ul>
             </div>
+
+            {/* </div> */}
           </ul>
         </div>
         {/* <div className="navbar-end">
